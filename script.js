@@ -85,3 +85,5 @@ function mostraAlternativas() {
    }
 
 }
+
+mostraPerguntas();
