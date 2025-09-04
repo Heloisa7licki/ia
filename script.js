@@ -67,6 +67,9 @@ atualmente?",
 
 ];
 
+let atual = 0;
+let mostraAtual;
+
 function mostraPerguntas() {
     perguntaAtual = perguntas[atual];
     caixasPerguntas.textContent = perguntaAtual.enunciado;
