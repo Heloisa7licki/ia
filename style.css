@@ -1,5 +1,5 @@
 :root {
-    --cor-fundo: #6C8E9A;
+    --cor-fundo: #050A24;
       --cor-principal: #6C8E9A;
         --cor-segundaria: #2D4B57;
           --cor-destaque: #050A24;
@@ -8,7 +8,7 @@
 }
 
 body {
-    background-color: #6C8E9A;
+    background-color: #050A24;
     color: var(--cor-texto);
     display: flex;
     justify-content: center;
