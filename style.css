@@ -7,3 +7,11 @@
              
 }
 
+body {
+    background-color: #6C8E9A;
+    color: var(--cor-texto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
