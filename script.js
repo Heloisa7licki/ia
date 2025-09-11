@@ -66,12 +66,12 @@ function mostraAlternativas() {
 
 
 function respostaSelecionada(opcaoSelecionada) {
-    historiaFinal += `Você escolheu: ${opcaoSelecionada}\n`; 
+    const afitmacoes = opcaoSelecionada.afitmacoes;
+    historiaFinal += afitmacoes +"";
     atual++;
     if (atual < perguntas.length) {
-        mostraPerguntas(); // Corrigido
-    } else {
-        textoResultado.textContent = historiaFinal;
+        mostraPerguntas(); 
+
     }
 }
 
