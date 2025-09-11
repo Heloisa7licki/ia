@@ -46,6 +46,7 @@ let historiaFinal = "";
 
 
 function mostraPerguntas() {
+    if (atual >                                                                         )
     perguntaAtual = perguntas[atual];
     caixaPergunta.textContent = perguntaAtual.enunciado; 
     mostraAlternativas();
@@ -54,7 +55,6 @@ function mostraPerguntas() {
 
 
 function mostraAlternativas() {
-    caixaAlternativas.innerHTML = ''; 
     for (const alternativa of perguntaAtual.alternativas) { 
         const botaoAlternativas = document.createElement("button");
         botaoAlternativas.textContent = alternativa;
