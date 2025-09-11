@@ -68,7 +68,8 @@ atualmente?",
 ];
 
 let atual = 0;
-let mostraAtual;
+let perguntaAtual;
+let historiaFinal = "";
 
 function mostraPerguntas() {
     perguntaAtual = perguntas[atual];
@@ -80,10 +81,22 @@ function mostraPerguntas() {
 function mostraAlternativas() {
    for (const alternativas of perguntaAtual.alternativas) {
     const botaoAlternativas = document.createElement("button");
-    botaoAlternativas.textContent = alternativas;
+    botaoAlternativas.textContent = alternativa.texto;
+    botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
     caixaAlternativas.appendChild(botaoAlternativas);
    }
 
+
+
+function respostaSelecionada(opcaoSelecionada) {
+   const afirmacoes = opcaoSelecionada.afirmacoes;
+   historiaFinal = afirmacoes;
+   atual++;
+   mostraPergunta();
+   }
+
 }
+
+
 
 mostraPerguntas();
