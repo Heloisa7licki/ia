@@ -4,6 +4,8 @@ const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
 
+
+
 const perguntas = [
     {
         enunciado: "Você utiliza com frequência as ferramentas básicas em IA?",
@@ -35,15 +37,21 @@ const perguntas = [
     },
 ];
 
+
+
 let atual = 0;
 let perguntaAtual;
 let historiaFinal = "";
+
+
 
 function mostraPerguntas() {
     perguntaAtual = perguntas[atual];
     caixaPergunta.textContent = perguntaAtual.enunciado; 
     mostraAlternativas();
 }
+
+
 
 function mostraAlternativas() {
     caixaAlternativas.innerHTML = ''; 
@@ -55,6 +63,8 @@ function mostraAlternativas() {
     }
 }
 
+
+
 function respostaSelecionada(opcaoSelecionada) {
     historiaFinal += `Você escolheu: ${opcaoSelecionada}\n`; 
     atual++;
@@ -64,5 +74,7 @@ function respostaSelecionada(opcaoSelecionada) {
         textoResultado.textContent = historiaFinal;
     }
 }
+
+
 
 mostraPerguntas();
