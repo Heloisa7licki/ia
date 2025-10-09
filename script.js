@@ -40,8 +40,14 @@ let perguntaAtual;
 let historiaFinal = "";
 
 function mostraPergunta() {
+    if (atual >= perguntas.legth) {
+        mostraResultado();
+        return;
+    }
+
     perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
+    caixaAlternativas.textContent = "";
     mostraAlternativas();
 }
 
@@ -61,10 +67,7 @@ function respostaSelecionada(opcaoSelecionada){
 }
 
 function mostraResultado(){
-    caixaPerguntas.textContent = "A inteligência artificial já faz parte da sua vida, mesmo que você ainda não tenha percebido.
-Dos algoritmos que escolhem suas músicas até os assistentes que respondem às suas perguntas, a IA está por toda a parte. Mas quanto você realmente sabe sobre ela?
-Este questionário foi feito para explorar de forma leve e rápida o seu relacionamento com a IA.
-Você vai refletir, se divertir e, talvez, até se surpreender.";
+    caixaPerguntas.textContent = "Em 2049.......";
     textoResultado.textContent = historiaFinal;
     caixaAlternativas.textContent = "",
 }
