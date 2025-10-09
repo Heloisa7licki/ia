@@ -1,10 +1,8 @@
 const caixaPrincipal = document.querySelector(".caixa-principal");
-const caixaPergunta = document.querySelector(".caixa-perguntas"); 
+const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
-
-
 
 const perguntas = [
     {
@@ -37,44 +35,35 @@ const perguntas = [
     },
 ];
 
-
-
 let atual = 0;
 let perguntaAtual;
 let historiaFinal = "";
 
-
-
-function mostraPerguntas() {
-    if (atual >                                                                         )
+function mostraPergunta() {
     perguntaAtual = perguntas[atual];
-    caixaPergunta.textContent = perguntaAtual.enunciado; 
+    caixaPerguntas.textContent = perguntaAtual.enunciado;
     mostraAlternativas();
 }
 
-
-
 function mostraAlternativas() {
-    for (const alternativa of perguntaAtual.alternativas) { 
+    for (const alternativa of perguntaAtual.alternativas) {
         const botaoAlternativas = document.createElement("button");
-        botaoAlternativas.textContent = alternativa;
-        botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa)); 
+        botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
         caixaAlternativas.appendChild(botaoAlternativas);
     }
 }
 
-
-
-function respostaSelecionada(opcaoSelecionada) {
-    const afitmacoes = opcaoSelecionada.afitmacoes;
-    historiaFinal += afitmacoes +"";
+function respostaSelecionada(opcaoSelecionada){
+    const afirmacoes = opcaoSelecionada.afirmacao;
+    historiaFinal = afirmacoes + " ";
     atual++;
-    if (atual < perguntas.length) {
-        mostraPerguntas(); 
-
-    }
+    mostraPergunta();
 }
 
+function mostraResultado(){
+    caixaPerguntas.textContent = "Em 2049...";
+    textoResultado.textContent = historiaFinal;
+    caixaAlternativas.textContent = "",
+}
 
-
-mostraPerguntas();
+mostraPergunta();
