@@ -28,15 +28,16 @@ h1{
   color: var(--cor-destaque);
 }
 
+button {
+  background-color: #2D4B57;
+  color: var(--cor-destaque);
+  border-radius: 15px;
+  padding: 15px;
+  transition: background-color 0.3;
+}
+
 button:hover {
   background-color: #050A24;
   color: var(--cor-segundaria)
 }
 
-button {
-  background-color: #2D4B57;
-  color: var(--cor-destaque);
-  border-radius: 15px
-  padding: 15px;
-  transition: background-color 0.3;
-}
