@@ -29,15 +29,16 @@ h1{
 }
 
 button {
-  background-color: #2D4B57;
+  background-color: var(--cor-segundaria);
   color: var(--cor-destaque);
+  boder: none;
   border-radius: 15px;
   padding: 15px;
   transition: background-color 0.3;
 }
 
 button:hover {
-  background-color: #050A24;
-  color: var(--cor-segundaria)
+  background-color: var(--cor-destaque);
+  color: var(--cor-principal)
 }
 
