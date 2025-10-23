@@ -40,15 +40,15 @@ const perguntas = [
 let atual = 0;
 let historiaFinal = "";
 
-// Quando o cursor passar sobre o botão "Começar"
-botaoComecar.addEventListener("mouseenter", () => {
+// "Começar" → começa o quiz
+botaoComecar.addEventListener("click", () => {
     caixaIntroducao.style.display = "none";
     caixaPerguntas.style.display = "block";
     caixaAlternativas.style.display = "block";
     mostraPergunta();
 });
 
-// Mostra a pergunta atual
+// Mostra perguntas
 function mostraPergunta() {
     if (atual >= perguntas.length) {
         mostraResultado();
@@ -61,27 +61,33 @@ function mostraPergunta() {
     mostraAlternativas(perguntaAtual.alternativas);
 }
 
-// Mostra as alternativas e reage ao passar o cursor
+// Cria os botões de resposta
 function mostraAlternativas(alternativas) {
     for (const alternativa of alternativas) {
         const botao = document.createElement("button");
         botao.textContent = alternativa;
 
-        // Encostar o cursor já seleciona
-        botao.addEventListener("mouseenter", () => respostaSelecionada(alternativa));
+        // EFEITO DE BRILHO AO PASSAR O MOUSE
+        botao.addEventListener("mouseenter", () => {
+            botao.classList.add("ativo");
+            setTimeout(() => botao.classList.remove("ativo"), 1000);
+        });
+
+        // CLICAR → AVANÇA PARA A PRÓXIMA PERGUNTA
+        botao.addEventListener("click", () => respostaSelecionada(alternativa));
 
         caixaAlternativas.appendChild(botao);
     }
 }
 
-// Quando o usuário passa o cursor sobre uma alternativa
+// Quando o usuário clica em uma alternativa
 function respostaSelecionada(opcao) {
     historiaFinal += opcao + " ";
     atual++;
     mostraPergunta();
 }
 
-// Mostra o resultado final
+// Mostra o resultado
 function mostraResultado() {
     caixaPerguntas.textContent = "Fim do questionário!";
     caixaAlternativas.style.display = "none";
@@ -90,8 +96,8 @@ function mostraResultado() {
     botaoRecomecar.style.display = "inline-block";
 }
 
-// Passar o mouse sobre o botão "Recomeçar" reinicia
-botaoRecomecar.addEventListener("mouseenter", () => {
+// Recomeçar o quiz
+botaoRecomecar.addEventListener("click", () => {
     atual = 0;
     historiaFinal = "";
     caixaResultado.style.display = "none";
