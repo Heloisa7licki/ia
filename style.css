@@ -1,10 +1,9 @@
 :root {
     --cor-fundo: #050A24;
-      --cor-principal: rgb(67, 75, 86);
-        --cor-segundaria: #2D4B57;
-          --cor-destaque: #ebedf5;
-            --cor-texto: #ecedf4;
-             
+    --cor-principal: rgb(67, 75, 86);
+    --cor-segundaria: #2D4B57;
+    --cor-destaque: #ebedf5;
+    --cor-texto: #ecedf4;
 }
 
 body {
@@ -16,29 +15,33 @@ body {
     min-height: 100vh;
 }
 
-.caixa-principal{
-  background-color: var(--cor-principal);
-  width: 90%;
-  max-width: 600px;
-  text-align: center;
-  padding: 20px;
+.caixa-principal {
+    background-color: var(--cor-principal);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    padding: 20px;
 }
 
-h1{
-  color: var(--cor-destaque);
+h1 {
+    color: var(--cor-destaque);
 }
 
 button {
-  background-color: var(--cor-segundaria);
-  color: var(--cor-destaque);
-  boder: none;
-  border-radius: 15px;
-  padding: 15px;
-  transition: background-color 0.3;
+    background-color: var(--cor-segundaria);
+    color: var(--cor-destaque);
+    border: none;  /* Corrigido 'boder' para 'border' */
+    border-radius: 15px;
+    padding: 15px;
+    margin: 5px; /* Adicionei um espaço entre os botões */
+    transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: var(--cor-destaque);
-  color: var(--cor-principal)
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
 }
 
+.caixa-resultado {
+    margin-top: 20px;
+}
