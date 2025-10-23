@@ -10,7 +10,7 @@
 /* -------------------------------
    ESTILO GLOBAL
 --------------------------------*/
-html, body, #app {
+html, body {
     margin: 0;
     width: 100%;
     height: 100%;
@@ -20,7 +20,22 @@ html, body, #app {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    overflow: hidden;
+}
+
+#app {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* fundo */
+}
+
+#canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 body {
@@ -37,7 +52,7 @@ body {
 --------------------------------*/
 .caixa-principal {
     position: relative;
-    z-index: 2;
+    z-index: 2; /* acima do canvas */
     background: linear-gradient(145deg, var(--roxo-escuro), var(--roxo-principal));
     width: 90%;
     max-width: 600px;
@@ -64,12 +79,6 @@ h1 {
     font-weight: 700;
     text-transform: uppercase;
     text-shadow: 0 0 10px var(--ciano-secundario);
-}
-
-h2 {
-    font-size: 2rem;
-    font-weight: 500;
-    text-transform: uppercase;
 }
 
 p {
@@ -119,7 +128,6 @@ button::before {
     z-index: 0;
 }
 
-/* Texto dentro do botão */
 button span {
     position: relative;
     z-index: 1;
@@ -155,4 +163,17 @@ button:hover {
 
 /* -------------------------------
    CAIXAS E CONTEÚDO
-----------------------------
+--------------------------------*/
+.caixa-resultado {
+    margin-top: 20px;
+}
+
+.caixa-perguntas,
+.caixa-alternativas,
+.caixa-resultado {
+    display: none;
+}
+
+.caixa-introducao p {
+    margin-bottom: 20px;
+}
