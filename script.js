@@ -5,43 +5,30 @@ const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
 const botaoComecar = document.getElementById("botao-comecar");
 const botaoRecomecar = document.getElementById("botao-recomecar");
+const somClique = document.getElementById("somClique");
 
 const perguntas = [
-    {
-        enunciado: "Você utiliza com frequência as ferramentas básicas em IA?",
-        alternativas: ["Sim", "Não"]
-    },
-    {
-        enunciado: "Você consegue imaginar sua vida sem o uso de Inteligência Artificial atualmente?",
-        alternativas: ["Sim", "Não"]
-    },
-    {
-        enunciado: "Você consegue diferenciar uma IA generativa de outras formas de IA?",
-        alternativas: ["Sim", "Não"]
-    },
-    {
-        enunciado: "Quando pensa em 'inteligência artificial', o ChatGPT é a primeira IA que vem na sua mente?",
-        alternativas: ["Sim", "Não"]
-    },
-    {
-        enunciado: "A educação é a área que você acha que a IA mais impacta sua vida?",
-        alternativas: ["Sim", "Não"]
-    },
-    {
-        enunciado: "Você confia nas informações fornecidas por IAs como ChatGPT?",
-        alternativas: ["Sim", "Não"]
-    },
-    {
-        enunciado: "Você já usou IA sem saber que era IA?",
-        alternativas: ["Sim", "Não"]
-    },
+    { enunciado: "Você utiliza com frequência as ferramentas básicas em IA?", alternativas: ["Sim", "Não"] },
+    { enunciado: "Você consegue imaginar sua vida sem o uso de Inteligência Artificial atualmente?", alternativas: ["Sim", "Não"] },
+    { enunciado: "Você consegue diferenciar uma IA generativa de outras formas de IA?", alternativas: ["Sim", "Não"] },
+    { enunciado: "Quando pensa em 'inteligência artificial', o ChatGPT é a primeira IA que vem na sua mente?", alternativas: ["Sim", "Não"] },
+    { enunciado: "A educação é a área que você acha que a IA mais impacta sua vida?", alternativas: ["Sim", "Não"] },
+    { enunciado: "Você confia nas informações fornecidas por IAs como ChatGPT?", alternativas: ["Sim", "Não"] },
+    { enunciado: "Você já usou IA sem saber que era IA?", alternativas: ["Sim", "Não"] },
 ];
 
 let atual = 0;
 let historiaFinal = "";
 
-// "Começar" → começa o quiz
+// Toca som de clique
+function tocarSom() {
+    somClique.currentTime = 0;
+    somClique.play();
+}
+
+// Começar
 botaoComecar.addEventListener("click", () => {
+    tocarSom();
     caixaIntroducao.style.display = "none";
     caixaPerguntas.style.display = "block";
     caixaAlternativas.style.display = "block";
@@ -58,36 +45,32 @@ function mostraPergunta() {
     const perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
     caixaAlternativas.textContent = "";
+
     mostraAlternativas(perguntaAtual.alternativas);
 }
 
-// Cria os botões de resposta
+// Alternativas
 function mostraAlternativas(alternativas) {
     for (const alternativa of alternativas) {
         const botao = document.createElement("button");
-        botao.textContent = alternativa;
-
-        // EFEITO DE BRILHO AO PASSAR O MOUSE
-        botao.addEventListener("mouseenter", () => {
-            botao.classList.add("ativo");
-            setTimeout(() => botao.classList.remove("ativo"), 1000);
+        botao.innerHTML = `<span>${alternativa}</span>`;
+        botao.addEventListener("mouseenter", () => tocarSom());
+        botao.addEventListener("click", () => {
+            tocarSom();
+            respostaSelecionada(alternativa);
         });
-
-        // CLICAR → AVANÇA PARA A PRÓXIMA PERGUNTA
-        botao.addEventListener("click", () => respostaSelecionada(alternativa));
-
         caixaAlternativas.appendChild(botao);
     }
 }
 
-// Quando o usuário clica em uma alternativa
+// Resposta clicada
 function respostaSelecionada(opcao) {
     historiaFinal += opcao + " ";
     atual++;
     mostraPergunta();
 }
 
-// Mostra o resultado
+// Resultado
 function mostraResultado() {
     caixaPerguntas.textContent = "Fim do questionário!";
     caixaAlternativas.style.display = "none";
@@ -96,8 +79,9 @@ function mostraResultado() {
     botaoRecomecar.style.display = "inline-block";
 }
 
-// Recomeçar o quiz
+// Recomeçar
 botaoRecomecar.addEventListener("click", () => {
+    tocarSom();
     atual = 0;
     historiaFinal = "";
     caixaResultado.style.display = "none";

@@ -8,9 +8,9 @@
 }
 
 /* -------------------------------
-   ESTILO GLOBAL
+   CENTRALIZAÇÃO GLOBAL
 --------------------------------*/
-html, body {
+html, body, #app {
     margin: 0;
     width: 100%;
     height: 100%;
@@ -20,7 +20,11 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    min-height: 100vh;
+}
+
+body {
+    touch-action: none;
 }
 
 #app {
@@ -29,30 +33,12 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; /* fundo */
+    z-index: 0;
 }
 
-#canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-body {
-    touch-action: none;
-}
-
-#app a {
-    text-decoration: none;
-    color: var(--branco-destaque);
-}
-
-/* -------------------------------
-   CONTAINER PRINCIPAL
---------------------------------*/
 .caixa-principal {
     position: relative;
-    z-index: 2; /* acima do canvas */
+    z-index: 2;
     background: linear-gradient(145deg, var(--roxo-escuro), var(--roxo-principal));
     width: 90%;
     max-width: 600px;
@@ -75,10 +61,11 @@ h1, h2, p {
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     font-weight: 700;
     text-transform: uppercase;
     text-shadow: 0 0 10px var(--ciano-secundario);
+    margin-bottom: 15px;
 }
 
 p {
@@ -128,6 +115,7 @@ button::before {
     z-index: 0;
 }
 
+/* Texto dentro do botão */
 button span {
     position: relative;
     z-index: 1;
@@ -135,45 +123,26 @@ button span {
     transition: text-shadow 0.4s ease;
 }
 
-/* Estado ativo (ao clicar) */
-button.ativo::before {
+/* Efeito de brilho quando encosta o mouse */
+button:hover::before {
     opacity: 1;
     animation: brilho-giro 1.2s linear infinite;
 }
 
-button.ativo span {
+button:hover span {
     text-shadow:
         0 0 8px var(--ciano-secundario),
         0 0 16px var(--branco-destaque),
         0 0 32px var(--ciano-secundario);
 }
 
-/* Efeito hover */
-button:hover {
-    background: var(--branco-destaque);
-    color: var(--roxo-principal);
-    box-shadow: 0 0 25px var(--branco-destaque);
+/* Clique */
+button:active {
+    transform: scale(0.95);
 }
 
 /* Animação do brilho */
 @keyframes brilho-giro {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-
-/* -------------------------------
-   CAIXAS E CONTEÚDO
---------------------------------*/
-.caixa-resultado {
-    margin-top: 20px;
-}
-
-.caixa-perguntas,
-.caixa-alternativas,
-.caixa-resultado {
-    display: none;
-}
-
-.caixa-introducao p {
-    margin-bottom: 20px;
 }

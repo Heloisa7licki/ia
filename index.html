@@ -18,7 +18,7 @@
                 Este questionário foi criado para entender um pouco mais sobre a sua relação com a IA.
                 Responda com sinceridade e descubra como ela já faz parte da sua rotina!
             </p>
-            <button id="botao-comecar">Começar</button>
+            <button id="botao-comecar"><span>Começar</span></button>
         </div>
 
         <div class="caixa-perguntas"></div>
@@ -26,35 +26,16 @@
 
         <div class="caixa-resultado">
             <p class="texto-resultado"></p>
-            <button id="botao-recomecar" style="display: none;">Recomeçar</button>
+            <button id="botao-recomecar" style="display: none;"><span>Recomeçar</span></button>
         </div>
     </div>
 
-    <!-- Canvas de fundo -->
     <div id="app">
         <canvas id="canvas"></canvas>
-       <div id="app">
-  <canvas id="canvas"></canvas>
-</div>
-
     </div>
 
+    <audio id="somClique" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6fbd2faad9.mp3?filename=click-124467.mp3" preload="auto"></audio>
+
     <script src="script.js"></script>
-
-    <!-- Script do efeito brilhante -->
-    <script>
-        document.querySelectorAll('button').forEach(botao => {
-            // Envolve o texto em <span> para aplicar o brilho
-            const textoOriginal = botao.innerHTML;
-            botao.innerHTML = `<span>${textoOriginal}</span>`;
-
-            // Animação de clique
-            botao.addEventListener('click', () => {
-                botao.classList.add('ativo');
-                setTimeout(() => botao.classList.remove('ativo'), 1200);
-            });
-        });
-    </script>
-
 </body>
 </html>
