@@ -15,7 +15,7 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    font-family: 'Orbitron', Arial, sans-serif; 
+    font-family: 'Orbitron', Arial, sans-serif;
 }
 
 .caixa-principal {
@@ -38,9 +38,12 @@ p {
     line-height: 1.7;
 }
 
+/* -------------------------------
+   BOTÕES COM EFEITO BRILHANTE
+--------------------------------*/
 button {
-    background: var(--ciano-secundario);
-    color: var(--fundo-escuro);
+    position: relative;
+    overflow: hidden;
     border: none;
     border-radius: 30px;
     padding: 12px 28px;
@@ -50,15 +53,69 @@ button {
     letter-spacing: 1px;
     font-weight: bold;
     transition: all 0.3s ease;
+    background: var(--ciano-secundario);
+    color: var(--fundo-escuro);
     box-shadow: 0 0 15px var(--ciano-secundario);
 }
 
+/* Camada giratória de brilho */
+button::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 0deg,
+        var(--roxo-principal),
+        var(--ciano-secundario),
+        var(--branco-destaque),
+        var(--roxo-principal)
+    );
+    filter: blur(25px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+/* Texto em camadas */
+button span {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    transition: text-shadow 0.4s ease;
+}
+
+/* Estado ativo (quando clica) */
+button.ativo::before {
+    opacity: 1;
+    animation: brilho-giro 1.2s linear infinite;
+}
+
+button.ativo span {
+    text-shadow:
+        0 0 8px var(--ciano-secundario),
+        0 0 16px var(--branco-destaque),
+        0 0 32px var(--ciano-secundario);
+}
+
+/* Animação do brilho */
+@keyframes brilho-giro {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Efeito hover */
 button:hover {
     background: var(--branco-destaque);
     color: var(--roxo-principal);
     box-shadow: 0 0 25px var(--branco-destaque);
 }
 
+/* -------------------------------
+   CAIXAS E CONTEÚDO
+--------------------------------*/
 .caixa-resultado {
     margin-top: 20px;
 }
@@ -67,4 +124,8 @@ button:hover {
 .caixa-alternativas,
 .caixa-resultado {
     display: none;
+}
+
+.caixa-introducao p {
+    margin-bottom: 20px;
 }

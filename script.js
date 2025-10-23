@@ -92,3 +92,16 @@ botaoRecomecar.addEventListener("click", () => {
     caixaPerguntas.style.display = "block";
     caixaAlternativas.style.display = "block";
 });
+
+// --- EFEITO BRILHANTE AO CLICAR ---
+document.querySelectorAll('button').forEach(botao => {
+  // envolve o texto com <span> (necessário para o brilho)
+  const textoOriginal = botao.innerHTML;
+  botao.innerHTML = `<span>${textoOriginal}</span>`;
+
+  botao.addEventListener('click', () => {
+    botao.classList.add('ativo');
+    setTimeout(() => botao.classList.remove('ativo'), 1200);
+  });
+});
+
