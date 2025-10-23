@@ -1,8 +1,10 @@
 const caixaPrincipal = document.querySelector(".caixa-principal");
+const caixaIntroducao = document.querySelector(".caixa-introducao");
 const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
+const botaoComecar = document.getElementById("botao-comecar");
 
 const perguntas = [
     {
@@ -39,6 +41,14 @@ let atual = 0;
 let perguntaAtual;
 let historiaFinal = "";
 
+// Quando clicar em "Começar"
+botaoComecar.addEventListener("click", () => {
+    caixaIntroducao.style.display = "none";
+    caixaPerguntas.style.display = "block";
+    caixaAlternativas.style.display = "block";
+    mostraPergunta();
+});
+
 function mostraPergunta() {
     if (atual >= perguntas.length) {
         mostraResultado();
@@ -54,25 +64,26 @@ function mostraPergunta() {
 function mostraAlternativas() {
     for (const alternativa of perguntaAtual.alternativas) {
         const botaoAlternativas = document.createElement("button");
-        botaoAlternativas.textContent = alternativa;  // Adiciona o texto "Sim" ou "Não"
+        botaoAlternativas.textContent = alternativa;
         botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
         caixaAlternativas.appendChild(botaoAlternativas);
     }
 }
 
 function respostaSelecionada(opcaoSelecionada) {
-    historiaFinal += opcaoSelecionada + " "; // Adiciona a opção selecionada à história final
+    historiaFinal += opcaoSelecionada + " ";
     atual++;
     mostraPergunta();
 }
 
 function mostraResultado() {
-    caixaPerguntas.textContent = "A inteligência artificial já faz parte da sua vida, mesmo que você ainda não tenha percebido.\n\n" +
-        "Dos algoritmos que escolhem suas músicas até os assistentes que respondem às suas perguntas, a IA está por toda a parte. Mas quanto você realmente sabe sobre ela?\n\n" +
+    caixaPerguntas.textContent =
+        "A inteligência artificial já faz parte da sua vida, mesmo que você ainda não tenha percebido.\n\n" +
+        "Dos algoritmos que escolhem suas músicas até os assistentes que respondem às suas perguntas, a IA está por toda parte. Mas quanto você realmente sabe sobre ela?\n\n" +
         "Este questionário foi feito para explorar de forma leve e rápida o seu relacionamento com a IA.\n\n" +
         "Você vai refletir, se divertir e, talvez, até se surpreender.";
-    textoResultado.textContent = historiaFinal;
-    caixaAlternativas.textContent = "";
+    
+    textoResultado.textContent = "Suas respostas: " + historiaFinal;
+    caixaAlternativas.style.display = "none";
+    caixaResultado.style.display = "block";
 }
-
-mostraPergunta();
