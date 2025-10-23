@@ -7,17 +7,34 @@
     --branco-destaque: #FFFFFF;
 }
 
-body {
+/* -------------------------------
+   ESTILO GLOBAL
+--------------------------------*/
+html, body, #app {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
     background-color: var(--fundo-escuro);
     color: var(--branco-texto);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
-    font-family: 'Orbitron', Arial, sans-serif;
 }
 
+body {
+    touch-action: none;
+}
+
+#app a {
+    text-decoration: none;
+    color: var(--branco-destaque);
+}
+
+/* -------------------------------
+   CONTAINER PRINCIPAL
+--------------------------------*/
 .caixa-principal {
     background: linear-gradient(145deg, var(--roxo-escuro), var(--roxo-principal));
     width: 90%;
@@ -29,13 +46,33 @@ body {
     border: 1px solid rgba(0, 224, 255, 0.2);
 }
 
-h1 {
+/* -------------------------------
+   TEXTOS
+--------------------------------*/
+h1, h2, p {
+    margin: 0;
+    padding: 0;
     color: var(--branco-destaque);
+    text-shadow: 0 0 20px rgba(0, 0, 0, 1);
+    user-select: none;
+}
+
+h1 {
+    font-size: 80px;
+    font-weight: 700;
+    text-transform: uppercase;
     text-shadow: 0 0 10px var(--ciano-secundario);
+}
+
+h2 {
+    font-size: 60px;
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
 p {
     line-height: 1.7;
+    margin-bottom: 20px;
 }
 
 /* -------------------------------
@@ -100,17 +137,17 @@ button.ativo span {
         0 0 32px var(--ciano-secundario);
 }
 
-/* Animação do brilho */
-@keyframes brilho-giro {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
 /* Efeito hover */
 button:hover {
     background: var(--branco-destaque);
     color: var(--roxo-principal);
     box-shadow: 0 0 25px var(--branco-destaque);
+}
+
+/* Animação do brilho */
+@keyframes brilho-giro {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* -------------------------------
@@ -126,66 +163,24 @@ button:hover {
     display: none;
 }
 
-.caixa-introducao p {
-    margin-bottom: 20px;
-}
-
-body, html, #app {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-}
-
-body {
-  touch-action: none;
-}
-
-#app {
-  height: 100%;
-  font-family: "Montserrat", serif;
-}
-
-#app a {
-  text-decoration: none;
-  color: #fff;
-}
-
+/* -------------------------------
+   SEÇÃO HERO / CANVAS
+--------------------------------*/
 .hero {
-  position: relative;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-h1, h2, p {
-  margin: 0;
-  padding: 0;
-  color: white;
-  text-shadow: 0 0 20px rgba(0, 0, 0, 1);
-  line-height: 100%;
-  user-select: none;
-}
-
-h1 {
-  font-size: 80px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-h2 {
-  font-size: 60px;
-  font-weight: 500;
-  text-transform: uppercase;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 #canvas {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
 }
