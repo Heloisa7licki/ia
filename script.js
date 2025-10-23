@@ -1,10 +1,10 @@
-const caixaPrincipal = document.querySelector(".caixa-principal");
 const caixaIntroducao = document.querySelector(".caixa-introducao");
 const caixaPerguntas = document.querySelector(".caixa-perguntas");
 const caixaAlternativas = document.querySelector(".caixa-alternativas");
 const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
 const botaoComecar = document.getElementById("botao-comecar");
+const botaoRecomecar = document.getElementById("botao-recomecar");
 
 const perguntas = [
     {
@@ -38,7 +38,6 @@ const perguntas = [
 ];
 
 let atual = 0;
-let perguntaAtual;
 let historiaFinal = "";
 
 // Quando clicar em "Começar"
@@ -55,35 +54,41 @@ function mostraPergunta() {
         return;
     }
 
-    perguntaAtual = perguntas[atual];
+    const perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
     caixaAlternativas.textContent = "";
-    mostraAlternativas();
+    mostraAlternativas(perguntaAtual.alternativas);
 }
 
-function mostraAlternativas() {
-    for (const alternativa of perguntaAtual.alternativas) {
-        const botaoAlternativas = document.createElement("button");
-        botaoAlternativas.textContent = alternativa;
-        botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
-        caixaAlternativas.appendChild(botaoAlternativas);
+function mostraAlternativas(alternativas) {
+    for (const alternativa of alternativas) {
+        const botao = document.createElement("button");
+        botao.textContent = alternativa;
+        botao.addEventListener("click", () => respostaSelecionada(alternativa));
+        caixaAlternativas.appendChild(botao);
     }
 }
 
-function respostaSelecionada(opcaoSelecionada) {
-    historiaFinal += opcaoSelecionada + " ";
+function respostaSelecionada(opcao) {
+    historiaFinal += opcao + " ";
     atual++;
     mostraPergunta();
 }
 
 function mostraResultado() {
-    caixaPerguntas.textContent =
-        "A inteligência artificial já faz parte da sua vida, mesmo que você ainda não tenha percebido.\n\n" +
-        "Dos algoritmos que escolhem suas músicas até os assistentes que respondem às suas perguntas, a IA está por toda parte. Mas quanto você realmente sabe sobre ela?\n\n" +
-        "Este questionário foi feito para explorar de forma leve e rápida o seu relacionamento com a IA.\n\n" +
-        "Você vai refletir, se divertir e, talvez, até se surpreender.";
-    
-    textoResultado.textContent = "Suas respostas: " + historiaFinal;
+    caixaPerguntas.textContent = "Fim do questionário!";
     caixaAlternativas.style.display = "none";
+    textoResultado.textContent = "Suas respostas foram: " + historiaFinal.trim() + ".";
     caixaResultado.style.display = "block";
+    botaoRecomecar.style.display = "inline-block";
 }
+
+botaoRecomecar.addEventListener("click", () => {
+    atual = 0;
+    historiaFinal = "";
+    caixaResultado.style.display = "none";
+    botaoRecomecar.style.display = "none";
+    mostraPergunta();
+    caixaPerguntas.style.display = "block";
+    caixaAlternativas.style.display = "block";
+});

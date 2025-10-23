@@ -58,5 +58,5 @@ button:hover {
 .caixa-perguntas,
 .caixa-alternativas,
 .caixa-resultado {
-    display: none; /* Esconde até o quiz começar */
+    display: none; /* Só aparecem quando o quiz começa */
 }
